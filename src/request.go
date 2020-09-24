@@ -31,7 +31,12 @@ func (dtc *DingTalkClient) httpRPC(path string, params url.Values, requestData i
 		}
 	}
 	if dtc.DevType == "isv" {
-		cur := isvGetCInfo[0]
+		var cur interface{}
+		if isvGetCInfo == nil {
+			cur = &DTIsvGetCompanyInfo{}
+		} else {
+			cur = isvGetCInfo[0]
+		}
 		switch v := cur.(type) {
 		case *DTIsvGetCompanyInfo:
 			switch path {
@@ -58,7 +63,7 @@ func (dtc *DingTalkClient) httpRPC(path string, params url.Values, requestData i
 			panic(errors.New("ERROR: *DTIsvGetCompanyInfo Error"))
 		}
 	}
-	if dtc.DevType == "personalMini"{
+	if dtc.DevType == "personalMini" {
 		if dtc.SNSAccessToken != "" && path != "sns/getuserinfo" {
 			if params == nil {
 				params = url.Values{}
