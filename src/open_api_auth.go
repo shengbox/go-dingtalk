@@ -310,7 +310,7 @@ func (dtc *DingTalkClient) IsvActivateSuite(authCorpID string, permanentCode str
 		"auth_corpid":    authCorpID,
 		"permanent_code": permanentCode,
 	}
-	err := dtc.httpRPC("service/activate_suite", nil, requestData, &data)
+	err := dtc.httpRPC("service/activate_suite", nil, requestData, &data, &DTIsvGetCompanyInfo{})
 	return data, err
 }
 
