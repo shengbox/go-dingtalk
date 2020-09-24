@@ -298,7 +298,7 @@ func (dtc *DingTalkClient) IsvGetPermanentCode(tmpAuthCode string) (GetPermanent
 	requestData := map[string]string{
 		"tmp_auth_code": tmpAuthCode,
 	}
-	err := dtc.httpRPC("service/get_permanent_code", nil, requestData, &data)
+	err := dtc.httpRPC("service/get_permanent_code", nil, requestData, &data, &DTIsvGetCompanyInfo{})
 	return data, err
 }
 
